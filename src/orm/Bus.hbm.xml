@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 10, 2015 10:25:51 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="orm.Bus" table="bus">
+        <id name="bus_id" type="java.lang.String" access="field">
+            <column name="BUS_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="bus_no" type="java.lang.String" access="field">
+            <column name="BUS_NO" />
+        </property>
+        <property name="line_id" type="java.lang.String" access="field">
+            <column name="LINE_ID" />
+        </property>
+        <property name="bus_date" type="java.sql.Timestamp" access="field">
+            <column name="BUS_DATE" />
+        </property>
+        <property name="total_seat" type="int" access="field">
+            <column name="TOTAL_SEAT" />
+        </property>
+        <property name="available_seat" type="int" access="field">
+            <column name="AVAILABLE_SEAT" />
+        </property>
+    </class>
+</hibernate-mapping>

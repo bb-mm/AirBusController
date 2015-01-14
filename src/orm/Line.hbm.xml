@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 10, 2015 10:25:51 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="orm.Line" table="line">
+        <id name="line_id" type="java.lang.String" access="field">
+            <column name="LINE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="line_name" type="java.lang.String" access="field">
+            <column name="LINE_NAME" />
+        </property>
+        <property name="line_type" type="java.lang.String" access="field">
+            <column name="LINE_TYPE" />
+        </property>
+        <property name="start_time" type="java.sql.Time" access="field">
+            <column name="START_TIME" />
+        </property>
+        <property name="end_time" type="java.sql.Time" access="field">
+            <column name="END_TIME" />
+        </property>
+    </class>
+</hibernate-mapping>

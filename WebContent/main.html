@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Online Ticket Booking System</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        订票系统
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="tab-switch" data-toggle="TOCITY">To City</a>
+                </li>
+                <li>
+                    <a href="#" class="tab-switch" data-toggle="TOAIRPORT">To Airport</a>
+                </li>
+                <li>
+                    <a href="#" class="tab-switch" data-toggle="CUSTOMER">User Info</a>
+                </li>
+                <li>
+                    <a href="#" class="tab-switch" data-toggle="INFO">Orders</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <div class="modal fade" id="popup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Success!</h4>
+      </div>
+      <div class="modal-body">
+        <p>You have already successfully booked the ticket(s). Thanks!</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+		<div class="modal fade" id="myModal">
+<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="modal-title">Choose Tickets</h3>
+        </div>
+        <div class="modal-body">
+       <input type="text" class="form-control" placeholder="Card Num" id="cardnum" required> 
+		  <h3 class="text-center">Bus Info</h3>
+          <table class="table table-striped" id="tblGrid">
+            <thead>
+        <tr>
+            <th data-field="id">Bus ID</th>
+            <th data-field="num">Bus Num</th>
+            <th data-field="lineid">Lind ID</th>
+            <th data-field="date">Bus Date</th>
+            <th data-field="seat1">Total Seat(s)</th>
+            <th data-field="seat2">Available Seat(s)</th>
+        </tr>
+        <tbody id='busInfo'></tbody>
+    		</thead>
+          </table>
+          <br>
+          <br>
+          <h3 class="text-center">Route Info</h3>
+          <table class="table table-striped" id="tblGrid">
+            <thead>
+        <tr>
+        	<th data-field="check"></th>
+           <th data-field="id">Route ID</th>
+            <th data-field="name">Station Name</th>
+            <th data-field="lineid">Lind ID</th>
+            <th data-field="price">Ticket Price</th>
+        </tr>
+        <tbody id='ticketInfo'></tbody>
+    		</thead>
+          </table>
+		</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="orderbtn">Order</button>
+        </div>
+				
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tab-content" id='TOCITY' style="display:none">
+                        <table class="table table-hover" data-toggle="table" data-height="299">
+    						<thead>
+        						<tr>
+            					<th data-field="lineid">Line ID</th>
+           	 					<th data-field="linename">Line Name</th>
+            					<th data-field="linetype">Line Type</th>
+            					<th data-field="start">Start Time</th>
+            					<th data-field="end">End Time</th>
+        						</tr>
+    						</thead>
+    						<tbody id='bodyTOCITY'>
+    						</tbody>
+						</table>
+						</div>
+                        <div class="tab-content" id='TOAIRPORT' style="display:none">
+                        <table class="table table-hover" data-toggle="table" data-height="299">
+    						<thead>
+        						<tr>
+            					<th data-field="lineid">Line ID</th>
+           	 					<th data-field="linename">Line Name</th>
+            					<th data-field="linetype">Line Type</th>
+            					<th data-field="start">Start Time</th>
+            					<th data-field="end">End Time</th>
+        						</tr>
+    						</thead>
+    						<tbody id='bodyTOAIRPORT'>
+    						</tbody>
+						</table>
+                        </div>
+                        <div class="tab-content" id='CUSTOMER' style="display:none">
+                        <table class="table table-hover" data-toggle="table" data-height="299">
+    						<thead>
+        						<tr>
+            					<th data-field="id">User ID</th>
+           	 					<th data-field="fname">First Name</th>
+            					<th data-field="lname">Last Name</th>
+            					<th data-field="phone">Phone</th>
+            					<th data-field="passport">Passport</th>
+        						</tr>
+    						</thead>
+    						<tbody id='bodyCUSTOMER'>
+    						</tbody>
+						</table>
+                        </div>
+                        <div class="tab-content" id='INFO' style="display:none">
+                        <table class="table table-hover" data-toggle="table" data-height="299">
+    						<thead>
+        						<tr>
+            					<th data-field="payid">Payment ID</th>
+           	 					<th data-field="price">Price</th>
+            					<th data-field="date">Date</th>
+            					<th data-field="card">Card Num</th>
+            					<th data-field="userid">User ID</th>
+            					<th data-field="routeid">Route ID</th>
+            					<th data-field="busid">Bus ID</th>
+        						</tr>
+    						</thead>
+    						<tbody id='bodyINFO'>
+    						</tbody>
+						</table>
+                        </div>                        
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    var url = 'http://' + document.location.host + '/AirBusController/';
+    $(".tab-switch").click(function(e){
+    	var target = $(this).data('toggle');
+    	//console.log(target);
+    	$('.tab-content').hide();
+    	$("#bodyINFO").html("");
+    	$("#bodyCUSTOMER").html("");
+    	$("#bodyTOCITY").html("");
+    	$("#bodyTOAIRPORT").html("");
+    	$('#'+target).show();
+    	$.post(url+'SearchServlet',{query:target,type:'0'},function(data){
+			//console.log(data);
+			$("#body"+target).append(data);	
+			$('td[data-field="lineid"]').click(function(){
+				
+				var lineid = $(this).html();
+				$.post(url+'SearchServlet',{query:lineid,type:'1'},function(data){
+					var data_temp = data.split("|||");
+					$('#busInfo').html("");
+					$('#ticketInfo').html("");
+					$('#busInfo').append(data_temp[0]);
+					$('#ticketInfo').append(data_temp[1]);
+					$( "input[type=checkbox]" ).on( "click", function(){
+						var temp = $(this).data('checked');
+				    	$(this).data('checked',(temp+1)%2);
+				    	console.log($(this).data('checked'));
+					} );
+					/*$(".inputcheck").click(function() {
+				    	var temp = $(this).data('checked');
+				    	$(this).attr('checked',(temp+1)%2);
+				    	console.log($(this).data('checked'));
+				    });*/
+				});
+				
+				$('#myModal').modal('show');
+				//console.log($(this).html());
+				//console.log("test!!!");
+				});
+		});
+    	return false;
+    });
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        //$("#bbmm").append("<tr>"+"<th data-field=\"id\">Item ID</th><th data-field=\"name\">Item Name</th><th data-field=\"price\">Item Price</th>"+"</tr>");
+    });
+    /*function placeOrder() {
+    	
+    	//$(".check[data-checked='1']").data();
+    }*/
+    $('#orderbtn').click(function(){
+    	var card = $('#cardnum').val();
+    	var tickets;
+    	//console.log($('#cardnum').val());
+    	//console.log($("input:checked").val());
+    	$("input:checked").each(function(i){
+    		console.log($(this).val());
+    		tickets += "TT" + $(this).val();
+    	});
+    	$.post(url+'OrderServlet',{ticket:tickets,card:card},function(data){
+    		$('#myModal').modal('hide');
+    		$('#popup').modal('show');
+			});
+    });
+    </script>
+
+</body>
+<style type="text/css">
+td[data-field="lineid"]:hover{
+cursor:pointer;
+}
+</style>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 10, 2015 10:25:51 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="orm.Customer" table="customer">
+        <id name="cus_id" type="java.lang.String" access="field">
+            <column name="CUS_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="cus_fname" type="java.lang.String" access="field">
+            <column name="CUS_FNAME" />
+        </property>
+        <property name="cus_lname" type="java.lang.String" access="field">
+            <column name="CUS_LNAME" />
+        </property>
+        <property name="cus_phone" type="java.lang.String" access="field">
+            <column name="CUS_PHONE" />
+        </property>
+        <property name="cus_passport" type="java.lang.String" access="field">
+            <column name="CUS_PASSPORT" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 10, 2015 10:25:51 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="orm.Payment" table="payment">
+        <id name="payment_id" type="java.lang.String" access="field">
+            <column name="PAYMENT_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="payment_price" type="int" access="field">
+            <column name="PAYMENT_PRICE" />
+        </property>
+        <property name="payment_date" type="java.sql.Timestamp" access="field">
+            <column name="PAYMENT_DATE" />
+        </property>
+        <property name="card_num" type="java.lang.String" access="field">
+            <column name="CARD_NUM" />
+        </property>
+        <property name="cus_id" type="java.lang.String" access="field">
+            <column name="CUS_ID" />
+        </property>
+        <property name="route_id" type="java.lang.String" access="field">
+            <column name="ROUTE_ID" />
+        </property>
+        <property name="bus_id" type="java.lang.String" access="field">
+            <column name="BUS_ID" />
+        </property>
+    </class>
+</hibernate-mapping>
